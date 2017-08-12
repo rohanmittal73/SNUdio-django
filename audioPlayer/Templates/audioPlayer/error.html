@@ -1,0 +1,19 @@
+<!--load static file directory-->
+{% load staticfiles %}
+
+<!--Title and icon-->
+<title>SNUdio - Error</title>
+<link rel="icon" href="{% static 'audioPlayer/img/favicon.png' %}">
+
+<!--Stylesheet-->
+<link rel="stylesheet" type="text/css" href="{% static 'audioPlayer/css/error404.css' %}">
+
+<!--Web page HTML-->
+<div id="backg">
+    <div id="banner404">
+        <img src="{% static 'audioPlayer/img/error404.png' %}">
+        <div id="filler"></div>
+        <div id="message">File does not Exist</div>
+    </div>
+
+</div>

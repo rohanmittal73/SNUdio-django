@@ -1,0 +1,100 @@
+{% extends 'audioPlayer/base.html' %}
+
+{% load staticfiles %}
+
+{% block home_button%}
+<span class="w3-bar-item w3-right w3-hide-small link-active">Home</span>
+{% endblock %}
+
+
+{% block before_player%}
+<!--Scroll Down-->
+<div id="scroll-indicator">
+	<div style="font-size: 2em;">Scroll down</div>
+	<i id="down-caret" class="fa fa-angle-down fa-3x" aria-hidden="true"></i>
+</div>
+{% endblock %}
+
+{% block player_banner%}
+<div id="player-banner"><i class="fa fa-television " aria-hidden="true"></i><span> Latest Stream</span></div>
+{% endblock %}
+
+{% block player_img %}
+<img src="{{latest.image.url}}" id="player-img">
+{% endblock%}
+
+{% block audio-elem%}
+
+{% if latest.title is "live" %}
+<audio src="{{latest.description}}" id="audio-html" controls></audio>
+{% else %}
+<audio src="{{latest.audio.url}}" id="audio-html" controls></audio>
+{% endif %}
+
+{% endblock %}
+
+{% block after_player%}
+
+<!--Trending-->
+<div class="center-frame">
+	<div id="trend-banner"><i class="fa fa-star " aria-hidden="true"></i><span> Trending</span></div>
+	<div class="w3-row">
+		{% for audio in trending%}
+		<div class="one-third card-spacing">
+			<a href="{% url 'audioPlayer:Desc' audio.id %}">
+			<div class="trend-card">
+				<img src="{{audio.image.url}}" style="width: 100%;">
+				<div style="padding-top: 5px">
+					<h2>{{audio.title}}</h2>
+				<p> Views: {{audio.views}}</p>
+				</div>
+
+			</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+
+<!--Spacing-->
+<div class="frame-spacing"></div>
+
+
+<!--About-->
+<div class="center-frame">
+	<div id="about-banner"><i class="fa fa-pencil-square-o " aria-hidden="true"></i>About</div>
+	<div class="w3-row" style="padding-bottom: 16px;">
+		<div class="one-fourth card-spacing" >
+			<div style="height: 320px">
+				<div class="about-card"><i class="fa fa-sitemap fa-5x icon-center" aria-hidden="true"></i></div>
+				<div class="about-card-text"><h3>Intranet Radio</h3>Don't worry about internet usage inside the campus</div>
+			</div>
+		</div>
+		<div class="one-fourth card-spacing">
+			<div style="height: 320px;">
+				<div class="about-card"><i class="fa fa-music fa-5x icon-center" aria-hidden="true"></i></div>
+				<div class="about-card-text"><h3>In-House Music</h3>Listen to the latest Snuphoria jams and DJ Mixes</div>
+			</div>
+		</div>
+		<div class="one-fourth card-spacing">
+			<div  style="height: 320px">
+				<div class="about-card"><i class="fa fa-newspaper-o fa-5x icon-center" aria-hidden="true"></i></div>
+				<div class="about-card-text"><h3>Announcements</h3>Listen about all the new events around the campus</div>
+			</div>
+		</div>
+		<div class="one-fourth card-spacing">
+			<div style="height: 320px">
+				<div class="about-card"><i class="fa fa-podcast fa-5x icon-center" aria-hidden="true" ></i></div>
+				<div class="about-card-text"><h3>Podcast</h3>Missed our live stream! Don't worry we have uploaded them for you</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% block scrolling %}
+
+{% endblock %}
+
+{% endblock %}

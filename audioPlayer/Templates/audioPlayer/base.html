@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free live internet radio for SNU">
+    <meta name="keywords" content="Shiv Nadar University,SNU,live radio,internet radio,radio,student,snudio,podcast,college,news,latest">
+    <meta name="author" content="Arpan Jain">
+    
+    <!--load static file directory-->
+    {% load staticfiles %}
+
+    <!--Site Title-->
+    <title>SNUdio</title>
+    <link rel="icon" href="{% static 'audioPlayer/img/favicon.png' %}">
+
+    <!--Responsive metas-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="{% static 'audioPlayer/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'audioPlayer/css/w3.css' %}">
+
+    <!--Icons-->
+    <link rel="stylesheet" type="text/css" href="{% static 'audioPlayer/fonts/font-awesome/css/font-awesome.min.css' %}">
+
+</head>
+<body>
+    <!--Nav Bar-->
+    <div id="counter" class="parallax">
+        <div id="Navbar" class="w3-bar">
+            <span id="navbar-brand">SNUdio</span>
+            <a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfvfV9uY_6kb3KHyFzRGaako6vlV6EgtFwwNO57eR7IBsN9pw/viewform?usp=sf_link" class="w3-bar-item w3-right w3-hide-small link">Contact</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScUO75PAlph7-y1TjrIcsQpTnZ02A0A4-7dpaBjOAKy3IYdpA/viewform?usp=sf_link" class="w3-bar-item w3-right w3-hide-small link">Vote</a>
+            {% block team_button%}
+            <a href="{% url 'team' %}" class="w3-bar-item w3-right w3-hide-small link">Team</a>
+            {% endblock %}
+            {% block search_button%}
+            <a href="{% url 'search' %}" class="w3-bar-item w3-right w3-hide-small link">Search</a>
+            {% endblock %}
+            {% block home_button%}
+            <a href="{% url 'home' %}" class="w3-bar-item w3-right w3-hide-small link">Home</a>
+            {% endblock %}
+            <span class="w3-bar-item w3-right w3-hide-medium w3-hide-large" onclick="document.getElementById('modal').style.display='block'">
+                <i class="fa fa-bars fa-2x" aria-hidden="true" style="color: white;"></i>
+            </span>
+        </div>
+        <div id="counter-text" class="text-resize">Aug 5, 2017 15:37:25</div>
+    </div>
+
+    <!--Modal Menu for smaller screens-->
+    <div id="modal" class="w3-modal">
+        <div id="modal-box" class="w3-modal-content">
+            <a href="{% url 'home' %}" class="modal-link">Home</a>
+            <br>
+            <a href="{% url 'search' %}" class="modal-link">Search</a>
+            <br>
+            <a href="{% url 'team' %}" class="modal-link">Team</a>
+            <br>
+            <a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfvfV9uY_6kb3KHyFzRGaako6vlV6EgtFwwNO57eR7IBsN9pw/viewform?usp=sf_link" class="modal-link">Contact</a>
+            <br>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScUO75PAlph7-y1TjrIcsQpTnZ02A0A4-7dpaBjOAKy3IYdpA/viewform?usp=sf_link" class="modal-link">Vote</a>
+            <br>
+            <div onclick="document.getElementById('modal').style.display='none'" class="modal-link">X</div>
+        </div>
+    </div>
+{% block before_player%}
+{% endblock %}
+
+{% block player%}
+    <!--Player-->
+    <div class="center-frame">
+        {% block player_banner %}{% endblock %}
+        <div class="player-image">
+                {% block player_img %}{% endblock %}
+        </div>
+        <div id="player" >
+            {% block audio-elem%}
+            {% endblock %}
+
+        </div>
+    </div>
+    {% endblock %}
+
+{% block after_player%}
+{% endblock %}
+
+
+    <!--Spacing-->
+    <div class="frame-spacing"></div>
+
+
+    <!--Footer-->
+    <div id="footer">
+        <div class="center-frame">
+            <div style="padding-top: 10px;">
+                <a href="http://www.facebook.com/facebook">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x" style="color: #2e2eb8;"></i>
+                        <i class="fa fa-facebook-f fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                <span class="icon-spacing"></span>
+                <a href="http://www.twitter.com/twitter">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x" style="color: dodgerblue;"></i>
+                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                <span class="icon-spacing"></span>
+                <a href="http://www.instagram.com">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x" style="color: #ff0066;"></i>
+                        <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                <span class="icon-spacing"></span>
+                <a href="mailto:ac383@snu.edu.in">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x" style="color: #e60000;"></i>
+                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            </div>
+            <div style="padding-top: 20px;">
+                <a href="http://www.snu.edu.in"><i class="fa fa-university" aria-hidden="true" ></i><span> Shiv Nadar University</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!--Javascript Files-->
+
+    <!--Counter Javascript-->
+    <script type="text/javascript" src="{% static 'audioPlayer/scripts/counter.js' %}"></script>
+
+</body>
+</html>

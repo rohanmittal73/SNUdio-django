@@ -1,0 +1,23 @@
+{% extends 'audioPlayer/base.html' %}
+
+{% load staticfiles %}
+
+{% block player_banner%}
+<div id="player-banner">{{audio.title}}</div>
+{% endblock %}
+
+{% block player_img %}
+<img src="{{audio.image.url}}" id="player-img">
+{% endblock%}
+
+{% block audio-elem%}
+<audio src="{{audio.audio.url}}" id="audio-html" data-live="off-air" onerror="StreamNotFound()" controls></audio>
+{% endblock %}
+
+{% block after_player%}
+<div class="center-frame">
+    <h2>Description</h2>
+    <p> {{audio.description}} </p>
+    <p> Views: {{audio.views}}</p>
+</div>
+{% endblock %}

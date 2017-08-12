@@ -1,0 +1,48 @@
+{% extends 'audioPlayer/base.html' %}
+
+<!--load static files-->
+{% load staticfiles %}
+
+<!--No Player-->
+
+{% block search_button%}
+<span class="w3-bar-item w3-right w3-hide-small link-active">Search</span>
+{% endblock %}
+
+{% block player%}{% endblock %}
+
+{% block after_player %}
+
+<div class="center-frame" style="padding-top: 20px;">
+    <form action="{% url 'search'%}" method="post">
+        {% csrf_token %}
+
+        <input type="search" id="search" name="search-query" placeholder="Search">
+    </form>
+</div>
+
+
+{% if results %}
+<div class="center-frame">
+    <div class="w3-row">
+    {% for audio in results %}
+        <div class="one-third card-spacing">
+            <a href="{%url 'audioPlayer:Desc' audio.id %}">
+            <div class="trend-card">
+                <div style="width: 100%; height: 40%;"><img src="{{audio.image.url}}" style="width: 100%;"></div>
+                <div>
+                <h3>{{audio.title}}</h3>
+                    <p> Views: {{audio.views}}</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="center-frame">
+    <h2> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Oops! No result found </h2>
+</div>
+{% endif %}
+{% endblock %}

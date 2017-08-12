@@ -1,0 +1,35 @@
+{% extends 'audioPlayer/base.html' %}
+
+<!--load static files-->
+{% load staticfiles %}
+
+<!--No Player-->
+
+{% block team_button%}
+<span class="w3-bar-item w3-right w3-hide-small link-active">Team</span>
+{% endblock %}
+
+{% block player%}{% endblock %}
+
+{% block after_player %}
+{% if team %}
+<div class="center-frame">
+    <div id="team-banner" class="text-resize"> <i class="fa fa-users" aria-hidden="true"></i><span> Meet the Team</span></div>
+    <div class="w3-row">
+    {% for member in team %}
+        <div class="one-fourth card-spacing">
+            <div class="w3-card">
+                <div style="width: 100%; height: 40%;"><img src="{{member.profile_image.url}}"></div>
+                <div>
+                <h3>{{member.name}}</h3>
+                <p>{{member.designation}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<h2> You dont have any members</h2>
+{% endif %}
+{% endblock %}
